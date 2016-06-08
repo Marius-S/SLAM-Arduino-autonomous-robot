@@ -7,7 +7,6 @@ int go = 1;
 int stop_motors_int = 0;
 int circle=1;
 
-
 unsigned long previousTime = 0;
 byte seconds;
 byte minutes;
@@ -118,13 +117,10 @@ void turn_left(){
     Serial.println ("Turning left");
     turn_left_int=0;
     delay(5000);
-    //go = 1;
-    //go_straight();
   }
 }
 
 void go_straight(){
-    
       digitalWrite(13, LOW); 
       digitalWrite(8, LOW);   
       analogWrite(11, 255);   
@@ -135,8 +131,6 @@ void go_straight(){
       time_print();
       Serial.println ("Going straight");
       ultra_control=1;
-      
-  
 }
 
 void stop_motors(){ 
@@ -153,7 +147,6 @@ void stop_motors(){
 }
 
 void check_circle(){
-  
     digitalWrite(8, HIGH);   
     digitalWrite(9, HIGH);
     digitalWrite(8, HIGH);   
@@ -172,13 +165,3 @@ void time_print(){
   Serial.print(seconds,DEC);
   Serial.print (" ");
 }
-
-
-
-
-
-  
-
-  
-
-
