@@ -90,6 +90,7 @@ void WiFiManager::setupConfigPortal() {
   server->on("/", std::bind(&WiFiManager::handleRoot, this));
   server->on("/wifi", std::bind(&WiFiManager::handleWifi, this, true));
   server->on("/0wifi", std::bind(&WiFiManager::handleWifi, this, false));
+  server->on("/sr", std::bind(&WiFiManager::handleSR, this));
   server->on("/wifisave", std::bind(&WiFiManager::handleWifiSave, this));
   server->on("/i", std::bind(&WiFiManager::handleInfo, this));
   server->on("/r", std::bind(&WiFiManager::handleReset, this));
@@ -334,6 +335,30 @@ void WiFiManager::handleRoot() {
   page += FPSTR(HTTP_END);
 
   server->send(200, "text/html", page);
+
+}
+
+void WiFiManager::handleSR() {
+  DEBUG_WM(F("Handle SR"));
+  if (captivePortal()) { // If caprive portal redirect instead of displaying the page.
+    return;
+  }
+
+  Serial.print("Work");
+ 
+
+  String page = FPSTR(HTTP_HEAD);
+  page.replace("{v}", "Handle SR");
+  page += FPSTR(HTTP_SCRIPT);
+  page += FPSTR(HTTP_STYLE);
+  page += FPSTR(HTTP_HEAD_END);
+  page += F("<dl>");
+  page += F("<dt>Start engine</dt><dd>");
+ 
+  page += FPSTR(HTTP_END);
+
+  server->send(200, "text/html", page);
+
 
 }
 
