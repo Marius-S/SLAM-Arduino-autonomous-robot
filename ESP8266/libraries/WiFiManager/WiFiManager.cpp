@@ -90,9 +90,9 @@ void WiFiManager::setupConfigPortal() {
   server->on("/", std::bind(&WiFiManager::handleRoot, this));
   server->on("/wifi", std::bind(&WiFiManager::handleWifi, this, true));
   server->on("/0wifi", std::bind(&WiFiManager::handleWifi, this, false));
-  server->on("/sr", std::bind(&WiFiManager::handleSR, this));
+  server->on("/start", std::bind(&WiFiManager::handleSTART, this));
+   server->on("/stop", std::bind(&WiFiManager::handleSTOP, this));
   server->on("/wifisave", std::bind(&WiFiManager::handleWifiSave, this));
-  server->on("/i", std::bind(&WiFiManager::handleInfo, this));
   server->on("/r", std::bind(&WiFiManager::handleReset, this));
   server->on("/generate_204", std::bind(&WiFiManager::handle204, this));  //Android/Chrome OS captive portal check.
   server->on("/fwlink", std::bind(&WiFiManager::handleRoot, this));  //Microsoft captive portal. Maybe not needed. Might be handled by notFound handler.
@@ -338,22 +338,38 @@ void WiFiManager::handleRoot() {
 
 }
 
-void WiFiManager::handleSR() {
-  DEBUG_WM(F("Handle SR"));
+void WiFiManager::handleSTART() {
+  DEBUG_WM(F("Handle START"));
   if (captivePortal()) { // If caprive portal redirect instead of displaying the page.
     return;
   }
 
-  Serial.print("Work");
- 
-
+  Serial.print("START");
   String page = FPSTR(HTTP_HEAD);
   page.replace("{v}", "Handle SR");
   page += FPSTR(HTTP_SCRIPT);
   page += FPSTR(HTTP_STYLE);
   page += FPSTR(HTTP_HEAD_END);
   page += F("<dl>");
-  page += F("<dt>Start engine</dt><dd>");
+  page += F("<dt>Start robot</dt><dd>");
+  page += FPSTR(HTTP_END);
+  server->send(200, "text/html", page);
+}
+
+void WiFiManager::handleSTOP() {
+  DEBUG_WM(F("Handle STOP"));
+  if (captivePortal()) { // If caprive portal redirect instead of displaying the page.
+    return;
+  }
+
+  Serial.print("STOP");
+  String page = FPSTR(HTTP_HEAD);
+  page.replace("{v}", "Handle SR");
+  page += FPSTR(HTTP_SCRIPT);
+  page += FPSTR(HTTP_STYLE);
+  page += FPSTR(HTTP_HEAD_END);
+  page += F("<dl>");
+  page += F("<dt>Stop robot</dt><dd>");
  
   page += FPSTR(HTTP_END);
 
@@ -545,45 +561,6 @@ void WiFiManager::handleWifiSave() {
   DEBUG_WM(F("Sent wifi save page"));
 
   connect = true; //signal ready to connect/reset
-}
-
-/** Handle the info page */
-void WiFiManager::handleInfo() {
-  DEBUG_WM(F("Info"));
-
-  String page = FPSTR(HTTP_HEAD);
-  page.replace("{v}", "Info");
-  page += FPSTR(HTTP_SCRIPT);
-  page += FPSTR(HTTP_STYLE);
-  page += FPSTR(HTTP_HEAD_END);
-  page += F("<dl>");
-  page += F("<dt>Chip ID</dt><dd>");
-  page += ESP.getChipId();
-  page += F("</dd>");
-  page += F("<dt>Flash Chip ID</dt><dd>");
-  page += ESP.getFlashChipId();
-  page += F("</dd>");
-  page += F("<dt>IDE Flash Size</dt><dd>");
-  page += ESP.getFlashChipSize();
-  page += F(" bytes</dd>");
-  page += F("<dt>Real Flash Size</dt><dd>");
-  page += ESP.getFlashChipRealSize();
-  page += F(" bytes</dd>");
-  page += F("<dt>Soft AP IP</dt><dd>");
-  page += WiFi.softAPIP().toString();
-  page += F("</dd>");
-  page += F("<dt>Soft AP MAC</dt><dd>");
-  page += WiFi.softAPmacAddress();
-  page += F("</dd>");
-  page += F("<dt>Station MAC</dt><dd>");
-  page += WiFi.macAddress();
-  page += F("</dd>");
-  page += F("</dl>");
-  page += FPSTR(HTTP_END);
-
-  server->send(200, "text/html", page);
-
-  DEBUG_WM(F("Sent info page"));
 }
 
 /** Handle the reset page */
