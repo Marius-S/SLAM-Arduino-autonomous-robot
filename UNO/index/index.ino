@@ -4,7 +4,11 @@ LiquidCrystal lcd(2, 10, 4, 5, 6, 7);
 
 //lcd
 int lcd_select = 0;
-int work = 0;
+int work = 1;
+int motor_speed = 150;
+int x = 0;
+int y = 0;
+int Array[20][20] = {{}};
 
 //ultrasonic
 long duration, cm;
@@ -20,15 +24,8 @@ void setup() {
 
 void loop() {
   ultrasonic();
-  lcds();
-
-  if (cm >= 50) {
-    go_straight();
-  } else {
-    stop_motors();
-    turn_left();
-  }
-
+  // lcds();
+  calculate();
 }
 
 
