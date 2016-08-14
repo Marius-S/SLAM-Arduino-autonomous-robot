@@ -4,7 +4,7 @@ LiquidCrystal lcd(2, 10, 4, 5, 6, 7);
 
 //lcd
 int lcd_select = 0;
-int work = 1;
+int work = 0;
 int motor_speed = 150;
 int x = 0;
 int y = 0;
@@ -27,10 +27,18 @@ void loop() {
   // lcds();
   //laikinai calculate();
   
-  if (work == 1) {
+  if (work == 2) {
     turn_right(motor_speed);
     work = 0;
   }
+  switch (work){
+  case 2:
+  calculate();
+  break;
+  case 4:
+   Array_to_serial();
+  break;
   }
+}
 
 

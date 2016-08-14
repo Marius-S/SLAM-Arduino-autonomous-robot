@@ -1,4 +1,4 @@
-void compass(int i, int turn) {
+int compass(int i, int turn) {
   // i - compass current value
   // turn - new turn direction
   // 1 - North
