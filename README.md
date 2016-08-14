@@ -10,25 +10,25 @@ Project owner: Marius Š. <br />
 Project stakeholder: T. Krilavičius <br />
 
 # Gloval variables
-work - Main robot function variable (2 - go, 4 - print calculated data to serial monitor) <br />
-motor_speed - Speed of the robot motors <br />
-x - Map X axis coordinate <br />
-y - Map Y axis coordinate <br />
-Array -  Array with all map coordinates <br />
-compas - Compass value (1 - North, 2 - East, 3 - West, 4 - South) <br />
+__work__ - Main robot function variable (2 - go, 4 - print calculated data to serial monitor) <br />
+__motor_speed__ - Speed of the robot motors <br />
+__x__ - Map X axis coordinate <br />
+__y__ - Map Y axis coordinate <br />
+__Array__ -  Array with all map coordinates <br />
+__compas__ - Compass value (1 - North, 2 - East, 3 - West, 4 - South) <br />
 
 # Functions
-lcd_setup() - Initialize LCD keypad shield <br />
-lcds() - Read LCD keypad shield buttons press and show menu information in LCD screen <br />
-go_straight() - Drive the robot straight <br />
-turn_left() - Turn the robot left <br />
-turn_right() - Turn the robot right <br />
-stop_motors() - Stop the robot <br />
-calculate() - Write the robot traveled distance into coordinates array <br />
-Array_to_serial() - Print coordinates array into serial monitor <br />
-ultrasonic() - Read distance between ultrasonic sensor and object <br />
-microsecondsToCentimeters() - Convert ultrasonic sensor data into centimeters <br />
-compass() - Calcualte current robot position by compass <br />
+__lcd_setup()__ - Initialize LCD keypad shield <br />
+__lcds()__ - Read LCD keypad shield buttons press and show menu information in LCD screen <br />
+__go_straight()__ - Drive the robot straight <br />
+__turn_left()__ - Turn the robot left <br />
+__turn_right()__ - Turn the robot right <br />
+__stop_motors()__ - Stop the robot <br />
+__calculate()__ - Write the robot traveled distance into coordinates array <br />
+__Array_to_serial()__ - Print coordinates array into serial monitor <br />
+__ultrasonic()__ - Read distance between ultrasonic sensor and object <br />
+__microsecondsToCentimeters()__ - Convert ultrasonic sensor data into centimeters <br />
+__compass()__ - Calcualte current robot position by compass <br />
 
 # Libraries
 __WiFiManager__<br />
