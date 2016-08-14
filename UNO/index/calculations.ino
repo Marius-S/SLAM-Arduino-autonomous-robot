@@ -3,18 +3,38 @@ void calculate() {
     go_straight(motor_speed);
 
     //write to array information
-    while ((cm >= 50) || (x > 10))  {
-      delay(1200);
-      Array[x][0] = 1;
-      x++;
-      ultrasonic();
+    while ((cm >= 50) || (x > 20))  {
+      switch (compas) {
+        case 1:
+          delay(1200);
+          Array[x][y] = 1;
+          x++;
+          ultrasonic();
+          break;
+        case 2:
+          delay(1200);
+          Array[x][y] = 1;
+          y--;
+          ultrasonic();
+          break;
+        case 3:
+          delay(1200);
+          Array[x][y] = 1;
+          y++;
+          ultrasonic();
+          break;
+        case 4:
+          delay(1200);
+          Array[x][y] = 1;
+          x--;
+          ultrasonic();
+          break;
+      }
     }
 
     //if in front is wall, then stop
     stop_motors();
     work = 0;
-
-
   }
 }
 

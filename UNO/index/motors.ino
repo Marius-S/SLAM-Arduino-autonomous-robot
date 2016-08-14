@@ -31,7 +31,7 @@ void go_straight(int m_speed) {
   digitalWrite(8, LOW);
   digitalWrite(12, HIGH);
   digitalWrite(9, LOW);
-  analogWrite(11, m_speed+10);
+  analogWrite(11, m_speed + 10);
   analogWrite(3, m_speed);
 }
 
