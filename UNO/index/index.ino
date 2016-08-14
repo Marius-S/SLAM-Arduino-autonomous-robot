@@ -14,7 +14,7 @@ int compas = 1;
 long duration, cm;
 
 void setup() {
-  //lcd_setup();
+  lcd_setup();
   Serial.begin(9600);
   pinMode(12, OUTPUT);
   pinMode(9, OUTPUT);
@@ -23,9 +23,7 @@ void setup() {
 }
 
 void loop() {
-  // laikinai ultrasonic();
-  // lcds();
-  //laikinai calculate();
+  lcds();
 
   if (work == 2) {
     turn_right(motor_speed);
