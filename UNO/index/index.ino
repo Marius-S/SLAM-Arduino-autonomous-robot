@@ -14,7 +14,7 @@ int Array[20][20] = {{}};
 long duration, cm;
 
 void setup() {
-  lcd_setup();
+  //lcd_setup();
   Serial.begin(9600);
   pinMode(12, OUTPUT);
   pinMode(9, OUTPUT);
@@ -23,9 +23,14 @@ void setup() {
 }
 
 void loop() {
-  ultrasonic();
+  // laikinai ultrasonic();
   // lcds();
-  calculate();
-}
+  //laikinai calculate();
+  
+  if (work == 1) {
+    turn_right(motor_speed);
+    work = 0;
+  }
+  }
 
 
