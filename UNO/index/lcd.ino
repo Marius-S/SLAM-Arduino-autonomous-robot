@@ -15,36 +15,35 @@ void lcds() {
     work = 0;
   }
   else if (x < 200) {
-    //UP - about
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Owner:");
-    lcd.setCursor(0, 1);
-    lcd.print("Marius S.");
-    //delay(5000);
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("Stakeholder:");
-    lcd.setCursor(0, 1);
-    lcd.print("T. Krilavicius");
-    //delay(5000);
-    lcd.clear();
-    lcd.setCursor(0, 0);
-    lcd.print("VMU project");
-    lcd.setCursor(0, 1);
-    lcd.print("Choose: ");
+    //UP
   }
   else if (x < 400) {
-    //Down
+    //Down - Push array values into monitor
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Push to Serial");
+    work = 3;
   }
   else if (x < 600) {
     //LEFT - start
+    lcd.clear();
+    lcd.setCursor(0, 0);
+    lcd.print("Start");
     work = 1;
   }
   else if (x < 800) {
     //SELECT
-  }
-  if (work == 1) {
-    Serial.println("working");
+    if (work == 1) {
+      work = 2;
+    }
+    switch (work) {
+      case 1:
+        work = 2;
+        break;
+      case 3:
+        work = 4;
+        break;
+    }
   }
 }
+
