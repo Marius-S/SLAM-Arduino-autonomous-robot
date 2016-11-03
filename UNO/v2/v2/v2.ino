@@ -1,20 +1,23 @@
 long duration, cm;
 int start = 0;
-
+int endd = 0;
 
 int x = 0;
 int y = 0;
 int y_value = 0;
-int Array[5][5] = {{}}; //4 x 4 meters square
+int Array[10][10] = {{}}; //4 x 4 meters square
 
 
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-
+  //Kliuciu sarasas
+Array[5][5]=2;
+Array[5][2]=2;
 }
 
 void loop() {
+  if (endd == 0){
   ultrasonic();
   if (cm <= 50) {
     Serial.print("Labas");
@@ -26,26 +29,34 @@ void loop() {
 
 
     if (y_value == 0) {
+      print_array(x,y);
 //      if (start == 1) {
 //        x++;
 //      } else {
 //        start = 1;
 //      }
-      while (x < 5) {
-        delay(500);
+      while (x < 10) {
+        //delay(500);
         Serial.print("Driving ");
         Serial.print(x);
         Serial.print(" ");
         Serial.print(y);
         Serial.println();
+        //Kliutis
+        if (Array[x][y]==2){
+          y++;
+        }
+        //Kliuties pabaiga
         Array[x][y] = 1;
         x++;
-        if (x >= 5) {
+        if (x >= 10) {
           y_value = 1;
           y++;
+          print_array(x,y);
         }
       }
     } else {
+      
       //x--;
       while (x > 0) {
         x--;
@@ -55,24 +66,34 @@ void loop() {
         Serial.print(" ");
         Serial.print(y);
         Serial.println();
+        //Kliutis
+        if (Array[x][y]==2){
+          y++;
+        }
+        //Kliuties pabaiga
         Array[x][y] = 1;
 
         if (x <= 0) {
           y_value = 0;
           y++;
+          print_array(x,y);
         }
       }
     }
   }
+  }
+ 
+  
+}
 
-  //print aray
-  if (x >= 4) {
-    if (y >= 4) {
+void print_array(int x, int y){
+  if (x == 0) {
+    if (y >= 9) {
       x = 0;
       y = 0;
       //Array print
-      while (y < 5) {
-        while (x < 5) {
+      while (y < 10) {
+        while (x < 10) {
           Serial.print(Array[x][y]);
           //For applicaiton Serial.println(Array[x][y]);
           x++;
@@ -80,6 +101,7 @@ void loop() {
         y++;
         x = 0;
         Serial.println();
+        endd=1;
       }
     }
   }
