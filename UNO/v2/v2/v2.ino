@@ -1,92 +1,81 @@
-long duration, cm;
-int start = 0;
-int endd = 0;
+long duration, cm; //Ultrasonic sensor calculations variable
+int endd = 0; //Show if area analysis were done or not
 
-int x = 0;
-int y = 0;
-int y_value = 0;
-int Array[10][10] = {{}}; //4 x 4 meters square
+int x = 0; //Array X value
+int y = 0; //Array Y value
+int y_value = 0; //Describes side into which robot going
+int Array[10][10] = {{}}; //4 x 4 meters square Array[X][Y]
 
 
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(9600);
-  //Kliuciu sarasas
-Array[5][5]=2;
-Array[5][2]=2;
+  Serial.begin(9600); //Begin serial port 9600
+  //Obstacles list. Uncomment obstacle variant to active it testing variant
+  //Test1();
+  //Test2();
+  //Test3();
+  //Test4();
+  //Test5();
+  //Test6();
+  //Test7();
+  //Test8();
 }
 
 void loop() {
-  if (endd == 0){
-  ultrasonic();
-  if (cm <= 50) {
-    Serial.print("Labas");
-    delay(1200);
-  }
+  if (endd == 0) {
+ //   ultrasonic();
+//    if (cm <= 50) {
+//      Serial.print("Labas");
+//      delay(1200);
+//    }
 
-  //Driving
-  if (cm > 50) {
+    //Driving
+    if (cm > 50) {
+      if (y_value == 0) {
+        print_array();
+        while (x < 10) {
+          //delay(500);
+          void print_array();
 
+          obstacle();
 
-    if (y_value == 0) {
-      print_array(x,y);
-//      if (start == 1) {
-//        x++;
-//      } else {
-//        start = 1;
-//      }
-      while (x < 10) {
-        //delay(500);
-        Serial.print("Driving ");
-        Serial.print(x);
-        Serial.print(" ");
-        Serial.print(y);
-        Serial.println();
-        //Kliutis
-        if (Array[x][y]==2){
-          y++;
+          Array[x][y] = 1;
+          x++;
+          if (x >= 10) {
+            y_value = 1;
+            y++;
+            print_array();
+          }
         }
-        //Kliuties pabaiga
-        Array[x][y] = 1;
-        x++;
-        if (x >= 10) {
-          y_value = 1;
-          y++;
-          print_array(x,y);
-        }
-      }
-    } else {
-      
-      //x--;
-      while (x > 0) {
-        x--;
-        delay(500);
-        Serial.print("Driving ");
-        Serial.print(x);
-        Serial.print(" ");
-        Serial.print(y);
-        Serial.println();
-        //Kliutis
-        if (Array[x][y]==2){
-          y++;
-        }
-        //Kliuties pabaiga
-        Array[x][y] = 1;
+      } else {
+        while (x > 0) {
+          x--;
+          void print_array();
 
-        if (x <= 0) {
-          y_value = 0;
-          y++;
-          print_array(x,y);
+          obstacle();
+
+          Array[x][y] = 1;
+
+          if (x <= 0) {
+            y_value = 0;
+            y++;
+            print_array();
+          }
         }
       }
     }
   }
-  }
- 
-  
 }
 
-void print_array(int x, int y){
+void print_array() {
+  delay(500);
+  Serial.print("Driving ");
+  Serial.print(x);
+  Serial.print(" ");
+  Serial.print(y);
+  Serial.println();
+}
+
+void print_array(int x, int y) {
   if (x == 0) {
     if (y >= 9) {
       x = 0;
@@ -101,7 +90,7 @@ void print_array(int x, int y){
         y++;
         x = 0;
         Serial.println();
-        endd=1;
+        endd = 1;
       }
     }
   }
