@@ -1,5 +1,6 @@
 long duration, cm; //Ultrasonic sensor calculations variable
 int endd = 0; //Show if area analysis were done or not
+int motors = 0; //If 0 - engine commands will freeze, if 1 - active
 
 int x = 0; //Array X value
 int y = 0; //Array Y value
@@ -11,7 +12,7 @@ void setup() {
   Serial.begin(9600); //Begin serial port 9600
   //Obstacles list. Uncomment obstacle variant to active it testing variant
   //Test1();
-  //Test2();
+  Test2();
   //Test3();
   //Test4();
   //Test5();
@@ -21,53 +22,50 @@ void setup() {
 }
 
 void loop() {
+
   if (endd == 0) {
- //   ultrasonic();
-//    if (cm <= 50) {
-//      Serial.print("Labas");
-//      delay(1200);
-//    }
+    //   ultrasonic();
+    //    if (cm <= 50) {
+    //      Serial.print("Labas");
+    //      delay(1200);
+    //    }
 
     //Driving
-    if (cm > 50) {
-      if (y_value == 0) {
-        print_array();
-        while (x < 10) {
-          //delay(500);
-          void print_array();
+    // if (cm > 50) {
+    if (y_value == 0) {
+      print_array();
+      while (x < 10) {
+        //delay(500);
+        print_steps();
 
-          obstacle();
-
-          Array[x][y] = 1;
-          x++;
-          if (x >= 10) {
-            y_value = 1;
-            y++;
-            print_array();
-          }
+        obstacle();
+        Array[x][y] = 1;
+        x++;
+        if (x >= 10) {
+          y_value = 1;
+          y++;
+          print_array();
         }
-      } else {
-        while (x > 0) {
-          x--;
-          void print_array();
-
-          obstacle();
-
-          Array[x][y] = 1;
-
-          if (x <= 0) {
-            y_value = 0;
-            y++;
-            print_array();
-          }
+      }
+    } else {
+      while (x > 0) {
+        x--;
+        print_steps();
+        obstacle();
+        Array[x][y] = 1;
+        if (x <= 0) {
+          y_value = 0;
+          y++;
+          print_array();
         }
       }
     }
+    //}
   }
 }
 
-void print_array() {
-  delay(500);
+void print_steps() {
+  // delay(500);
   Serial.print("Driving ");
   Serial.print(x);
   Serial.print(" ");
@@ -75,7 +73,7 @@ void print_array() {
   Serial.println();
 }
 
-void print_array(int x, int y) {
+void print_array() {
   if (x == 0) {
     if (y >= 9) {
       x = 0;
@@ -93,6 +91,12 @@ void print_array(int x, int y) {
         endd = 1;
       }
     }
+  }
+}
+
+void kill() {
+  if (((x > 10) || (x < 0)) || ((y > 10) || ( y < 0))) {
+    endd = 1;
   }
 }
 
