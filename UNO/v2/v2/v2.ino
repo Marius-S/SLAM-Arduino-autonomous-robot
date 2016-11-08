@@ -1,6 +1,7 @@
 long duration, cm; //Ultrasonic sensor calculations variable
 int endd = 0; //Show if area analysis were done or not
 int motors = 0; //If 0 - engine commands will freeze, if 1 - active
+int jump = 0;
 
 int x = 0; //Array X value
 int y = 0; //Array Y value
@@ -12,8 +13,8 @@ void setup() {
   Serial.begin(9600); //Begin serial port 9600
   //Obstacles list. Uncomment obstacle variant to active it testing variant
   //Test1();
-  Test2();
-  //Test3();
+  //Test2();
+  Test3();
   //Test4();
   //Test5();
   //Test6();
@@ -22,50 +23,34 @@ void setup() {
 }
 
 void loop() {
-
   if (endd == 0) {
-    //   ultrasonic();
-    //    if (cm <= 50) {
-    //      Serial.print("Labas");
-    //      delay(1200);
-    //    }
-
+    jump--;
     //Driving
-    // if (cm > 50) {
-    if (y_value == 0) {
+    obstacle();
+    print_steps();
+    Array[x][y] = 1;
+    if ((x == 9) && (y_value == 0)) {
+      y_value = 1;
+      y++;
       print_array();
-      while (x < 10) {
-        //delay(500);
-        print_steps();
-
-        obstacle();
-        Array[x][y] = 1;
-        x++;
-        if (x >= 10) {
-          y_value = 1;
-          y++;
-          print_array();
-        }
-      }
-    } else {
-      while (x > 0) {
-        x--;
-        print_steps();
-        obstacle();
-        Array[x][y] = 1;
-        if (x <= 0) {
-          y_value = 0;
-          y++;
-          print_array();
-        }
-      }
+      jump = 1;
     }
-    //}
+    if ((x <= 0) && (y_value == 1)) {
+      y_value = 0;
+      y++;
+      print_array();
+      jump = 1;
+    }
+    if ((y_value == 0) && (jump != 1)) {
+      x++;
+    }
+    if ((y_value == 1) && (jump != 1)) {
+      x--;
+    }
   }
 }
 
 void print_steps() {
-  // delay(500);
   Serial.print("Driving ");
   Serial.print(x);
   Serial.print(" ");
@@ -91,12 +76,6 @@ void print_array() {
         endd = 1;
       }
     }
-  }
-}
-
-void kill() {
-  if (((x > 10) || (x < 0)) || ((y > 10) || ( y < 0))) {
-    endd = 1;
   }
 }
 
