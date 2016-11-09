@@ -2,6 +2,7 @@ void obstacle() {
   int trigger = 0;
   //Obstacle - 1
   if ((Array[x][y] == 2) && (Array[x - 1][y + 1] == 2)) {
+    Serial.println("Obstacle-3");
     x--;
     if (y_value == 0) {
       y_value = 1;
@@ -14,9 +15,12 @@ void obstacle() {
     trigger = 1;
   }
 
+  //Obstacle - 2
+  if ((x == 10) && (trigger != 1) && (Array[x - 1][y + 1] == 2)) {
     Serial.println("Obstacle-2");
     y++;
     x--;
+    if (y_value == 0) {
       y_value = 1;
       x--;
     } else
