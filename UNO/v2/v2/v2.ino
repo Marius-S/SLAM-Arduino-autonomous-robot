@@ -14,7 +14,7 @@ void setup() {
   //Obstacles list. Uncomment obstacle variant to active it testing variant
   //Test1();
   //Test2();
-  Test3();
+  //Test3();
   //Test4();
   //Test5();
   //Test6();
