@@ -12,7 +12,7 @@ int Array[10][10] = {{}}; //4 x 4 meters square Array[X][Y]
 void setup() {
   Serial.begin(9600); //Begin serial port 9600
   //Obstacles list. Uncomment obstacle variant to active it testing variant
-  //Test1();
+  Test1();
   //Test2();
   //Test3();
   //Test4();
@@ -23,6 +23,8 @@ void setup() {
 }
 
 void loop() {
+listener();
+  
   if (endd == 0) {
     jump--;
     //Driving
@@ -56,6 +58,17 @@ void print_steps() {
   Serial.print(" ");
   Serial.print(y);
   Serial.println();
+}
+
+void listener(){
+  if (Serial.available())
+  {
+    char ch = Serial.read();
+    if (ch == 'P')
+    {
+      print_array();
+    }
+  }
 }
 
 void print_array() {
