@@ -1,5 +1,6 @@
 void obstacle() {
   int trigger = 0;
+  int straight = 1;
   //Obstacle - 1
   if ((Array[x][y] == 2) && (Array[x - 1][y + 1] == 2)) {
     Serial.println("Obstacle-3");
@@ -13,6 +14,7 @@ void obstacle() {
       x--;
     }
     trigger = 1;
+    straight = 0;
   }
 
   //Obstacle - 2
@@ -28,11 +30,21 @@ void obstacle() {
       y_value = 0;
       x--;
     }
+    straight = 0;
   }
 
   //Obstacle - 3
   if ((Array[x][y] == 2) && (trigger != 1)) {
     Serial.println("Obstacle-3");
+
+    turn_right(motor_speed);
+
+    go_straight(motor_speed);
+
+    turn_left(motor_speed);
+
+
+
     if (y_value == 1) {
       y++;
       x++;
@@ -41,6 +53,11 @@ void obstacle() {
       y++;
       x--;
     }
+    straight = 0;
+  }
+
+  if ((straight == 1) && (endd == 0)) {
+    go_straight(motor_speed);
   }
 }
 
