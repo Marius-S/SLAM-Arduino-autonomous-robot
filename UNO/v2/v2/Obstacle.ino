@@ -36,15 +36,9 @@ void obstacle() {
   //Obstacle - 3
   if ((Array[x][y] == 2) && (trigger != 1)) {
     Serial.println("Obstacle-3");
-
     turn_right(motor_speed);
-
     go_straight(motor_speed);
-
     turn_left(motor_speed);
-
-
-
     if (y_value == 1) {
       y++;
       x++;
