@@ -1,6 +1,6 @@
 long duration, cm; //Ultrasonic sensor calculations variable
 int endd = 0; //Show if area analysis were done or not
-int motors = 1; //If 0 - engine commands will freeze, if 1 - active
+int motors = 0; //If 0 - engine commands will freeze, if 1 - active
 int jump = 0; //Variable which show if robot changed direction
 int motor_speed = 150; // Motors speed
 int x = 0; //Array X value
@@ -30,6 +30,7 @@ void loop() {
   delay(3000); //Delay between robot moves
   if (endd == 0) { //Chech is robot must stop or can go
     jump--; //Every loop jump variable starts from 0
+    scan();
     obstacle(); //Checking if obstacle exist in front of robot
     print_steps();
     Array[x][y] = 1;
