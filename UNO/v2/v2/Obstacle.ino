@@ -53,5 +53,39 @@ void obstacle() {
   if ((straight == 1) && (endd == 0)) {
     go_straight(motor_speed);
   }
+
+  //Some improvisations
+  if ((x == 9) or (x == 0)) {
+    while ((x != 9) or (x != 0) or (Array[x][y] != 2)) {
+      if (y_value == 1) {
+        x++;
+      } else {
+        x--;
+      }
+      x--;
+      if (Array[x][y] == 0) {
+        int needgo = 1;
+        Serial.print("Praleidai");
+      }
+    }
+
+    //
+//    while ((x == 9) or (x == 0) or (Array[x][y] == 2)) {
+//      if (y_value == 1) {
+//        y_value = 0;
+//        x--;
+//        //y++;
+//        //x++;
+//      }
+//      else {
+//        y_value = 1;
+//        x++;
+//        //y++;
+//        //x--;
+//      }
+//      break;
+//    }
+  }
+  //End of some improvisations
 }
 

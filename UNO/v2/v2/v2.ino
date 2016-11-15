@@ -16,7 +16,7 @@ void setup() {
   Serial.begin(9600); //Begin serial port 9600
   //Obstacles list. Uncomment obstacle variant to active it testing variant
   //Test1();
-  //Test2();
+  Test2();
   //Test3();
   //Test4();
   //Test5();
@@ -27,10 +27,10 @@ void setup() {
 
 void loop() {
   listener(); //Listen in entered value into Serial monitor
-  delay(3000); //Delay between robot moves
+  delay(1000); //Delay between robot moves
   if (endd == 0) { //Chech is robot must stop or can go
     jump--; //Every loop jump variable starts from 0
-    scan();
+    //scan();
     obstacle(); //Checking if obstacle exist in front of robot
     print_steps();
     Array[x][y] = 1;
