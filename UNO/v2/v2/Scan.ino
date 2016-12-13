@@ -5,7 +5,7 @@ void scan() { //scaning obsticles
   if (cm < 20) {
     scan_f = 1; //Obstacle in front
     Serial.println("In front");
-    turn_right(motor_speed);
+    turn_right(turn);
     delay(500);
     ultrasonic();
     if (cm < 20) {
@@ -22,8 +22,8 @@ void scan() { //scaning obsticles
         x--;
       }
     } else {
-      go_straight(motor_speed);
-      turn_left(motor_speed);
+      go_straight(turn);
+      turn_left(turn);
       if (y_value == 1) {
         Array[x + 1][y] = 2;
         y++;
