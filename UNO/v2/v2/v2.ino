@@ -7,7 +7,7 @@ int jump = 0; //Variable which show if robot changed direction
 int motor_speed = 150; // Motors speed
 int x = 0; //Array X value
 int y = 0; //Array Y value
-int y_value = 0; //Describes side into which robot going
+int y_value = 0; //Describes side into which robot going in line, 0 - right, 1 - left
 int Array[10][10] = {{}}; //4 x 4 meters square Array[X][Y]
 
 int turn = 700; //How many time needed to rotate servo
@@ -26,15 +26,7 @@ void setup() {
   analogWrite(11, 0);
   analogWrite(3, 0);
   Serial.begin(9600); //Begin serial port 9600
-  //Obstacles list. Uncomment obstacle variant to active it testing variant
-  //Test1();
-  //Test2();
-  //Test3();
-  //Test4();
-  //Test5();
-  //Test6();
-  //Test7();
-  //Test8();
+  Test(0); //Choose test 
   right.attach(6);//desine
   left.attach(10);//kaire
 }
