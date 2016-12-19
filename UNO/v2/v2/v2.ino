@@ -9,6 +9,7 @@ int x = 0; //Array X value
 int y = 0; //Array Y value
 int y_value = 0; //Describes side into which robot going in line, 0 - right, 1 - left
 int Array[10][10] = {{}}; //4 x 4 meters square Array[X][Y]
+int check_line = 0;
 
 int turn = 700; //How many time needed to rotate servo
 Servo left;
@@ -33,6 +34,7 @@ void setup() {
 
 void loop() {
 
+algo_1();
   //main rotating commands
 //  turn_left(turn);
 //  go_straight(turn);
@@ -77,10 +79,4 @@ void print_steps() { //Print steps to Serial monitor that robot do
   Serial.println();
 }
 
-void go_to_next_y() { //If goint to next y line when use this
-  y++;
-  print_array();
-  jump = 1;
-}
-
-void ultrasonic();
+//void ultrasonic();
