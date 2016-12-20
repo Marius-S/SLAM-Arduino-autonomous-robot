@@ -27,9 +27,10 @@ void setup() {
   analogWrite(11, 0);
   analogWrite(3, 0);
   Serial.begin(9600); //Begin serial port 9600
-  Test(0); //Choose test 
+  Test(1); //Choose test 
   right.attach(6);//desine
   left.attach(10);//kaire
+  Serial.println("Start");
 }
 
 void loop() {
@@ -71,12 +72,6 @@ algo_1();
   //  }
 }
 
-void print_steps() { //Print steps to Serial monitor that robot do
-  Serial.print("Driving ");
-  Serial.print(x);
-  Serial.print(" ");
-  Serial.print(y);
-  Serial.println();
-}
+
 
 //void ultrasonic();
