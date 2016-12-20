@@ -14,21 +14,19 @@ void listener() { //Read Serial monitor
 }
 
 void print_array() { //Print array as grid
-  if (x == 0) {
-    if (y >= 9) {
-      x = 0;
-      y = 0;
-      //Array print
-      while (y < 10) {
-        while (x < 10) {
-          Serial.print(Array[x][y]);
-          x++;
-        }
-        y++;
-        x = 0;
-        Serial.println();
-        endd = 1;
+  if (y >= 9) {
+    x = 0;
+    y = 0;
+    //Array print
+    while (y < 10) {
+      while (x < 10) {
+        Serial.print(Array[x][y]);
+        x++;
       }
+      y++;
+      x = 0;
+      Serial.println();
+      endd = 1;
     }
   }
 }
