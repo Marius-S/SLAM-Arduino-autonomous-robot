@@ -1,4 +1,5 @@
 int Array[10][10] = {{}}; //Our area array
+int ArrayMap[10][10] = {{}}; //Our area array which we use for map draw
 int ArObs[10][10] = {{}}; //Our area array of obstacles
 int start = 1; //This variable helps to use loop only one single time
 int x = 0; //Array X value
@@ -6,6 +7,7 @@ int y = 0; //Array Y value
 int MaxX = 9; //Maximum X value
 int MaxY = 9; //Maximum Y value
 int minimum = 0; //Minimum variable which we will return
+int value = 0; //Current point value which we will use to add to near points
 
 void setup() {
   Serial.begin(9600); //Begin serial port 9600
@@ -13,29 +15,16 @@ void setup() {
 }
 
 void loop() {
-  if(start == 1){ //If loop is available to start
-  Array[5][5]=2;
-  Array[2][2]=5;
-  FindMin();
-  Serial.println(minimum);
-  start--;
+  if (start == 1) { //If loop is available to start
+    Array[0][0] = 1; //Primary point value
+    while ((x != MaxX) && (y != MaxY)) { //While final point doesn't reach
+      FindMin(); //Find minimum value
+      MovingCicle(x, y); //Check around selected point
+    } //End of loop while final point doesn't reach
+    Serial.println("---Printing values---");
+    PrintAllValues(); //Print squares values
+    Serial.println("---Printing map---");
+    PrintMap(); //Print Map with map values
+    start = 0; //At the end stop loop cicle
   } //End of loop check
-  
-  if(start == 1) //If loop is available to start
-  {
-    if((x >= 0) && (x <= 9)) //Checking if X is in it range
-    {
-      if((x >= 0) && (x <= 9)) //Checking if Y is in it range
-      {
-        
-        
-      } //End of Y range check
-    } //End of X range check
-    start--; //Stoping main loop
-  } //End of loop check
-}
-
-void MovingCicle(){
-  if 
-}
-
+} //End of main loop
