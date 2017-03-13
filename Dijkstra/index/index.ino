@@ -8,6 +8,8 @@ int MaxX = 9; //Maximum X value
 int MaxY = 9; //Maximum Y value
 int minimum = 0; //Minimum variable which we will return
 int value = 0; //Current point value which we will use to add to near points
+int xPrev = 0;
+int yPrev = 0;
 
 void setup() {
   Serial.begin(9600); //Begin serial port 9600
@@ -15,9 +17,10 @@ void setup() {
 }
 
 void loop() {
+  Obstacles(2);
   if (start == 1) { //If loop is available to start
     Array[0][0] = 1; //Primary point value
-    while ((x != MaxX) && (y != MaxY)) { //While final point doesn't reach
+    while ((x != 3) && (y != 3)) { //While final point doesn't reach
       FindMin(); //Find minimum value
       MovingCicle(x, y); //Check around selected point
     } //End of loop while final point doesn't reach
