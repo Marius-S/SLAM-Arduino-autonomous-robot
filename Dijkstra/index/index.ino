@@ -21,13 +21,15 @@ void loop() {
   if (start == 1) { //If loop is available to start
     Array[0][0] = 1; //Primary point value
     while ((x != 3) && (y != 3)) { //While final point doesn't reach
+      xPrev = x;
+      yPrev = y;
       FindMin(); //Find minimum value
       MovingCicle(x, y); //Check around selected point
     } //End of loop while final point doesn't reach
-    Serial.println("---Printing values---");
-    PrintAllValues(); //Print squares values
-    Serial.println("---Printing map---");
-    PrintMap(); //Print Map with map values
+    //Serial.println("---Printing values---");
+    //PrintAllValues(); //Print squares values
+    //Serial.println("---Printing map---");
+    //PrintMap(); //Print Map with map values
     start = 0; //At the end stop loop cicle
   } //End of loop check
 } //End of main loop

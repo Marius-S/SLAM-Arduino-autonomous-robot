@@ -1,23 +1,34 @@
-void MoveToPoint(int xPos, int yPos){
-  while(yPrev != yPos){
-    if(yPrev > yPos){
-      Serial.println("Moving y--");
-      yPos++;
+void MoveToPoint(int xPos, int yPos) {
+  while (yPrev != yPos) {
+    if (yPrev > yPos) {
+      yPrev--;
+      Serial.print("Moving y-- (");
+      PrintStep();
     }
-    else{
-      Serial.println("Moving y++");
-      yPos--;
-    }
-  }
-  while(xPrev != xPos){
-    if(xPrev > xPos){
-      Serial.println("Moving x--");
-      xPos++;
-    }
-    else{
-       Serial.println("Moving x++");
-      xPos--;
+    else {
+      yPrev++;
+      Serial.print("Moving y++ (");
+      PrintStep();
     }
   }
+  while (xPrev != xPos) {
+    if (xPrev > xPos) {
+      xPrev--;
+      Serial.print("Moving x-- (");
+      PrintStep();
+    }
+    else {
+      xPrev++;
+      Serial.print("Moving x++ (");
+      PrintStep();
+    }
+  }
+}
+
+void PrintStep() {
+  Serial.print(xPrev);
+  Serial.print(" ");
+  Serial.print(yPrev);
+  Serial.println(")");
 }
 

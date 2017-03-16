@@ -93,10 +93,10 @@ void PrintMap() { //Prints all values of array of points
 } //End of function
 
 void MovingCicle(int x, int y) {
-  
+
   MoveToPoint(x,y);
-  xPrev = x;
-  yPrev = y;
+    //xPrev = x;
+    //yPrev = y;
   
   value = Array[x][y]; //Current point value
   ArrayMap[x][y] = 3; //Select point as full analized and already moved around it
