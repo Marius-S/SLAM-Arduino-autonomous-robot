@@ -9,7 +9,6 @@ void FindMin() { //Finding minimum value in Array
         if (Array[tempX][tempY] < minimum) { //If place is bigger than minimum
           if (ArrayMap[tempX][tempY] != 3) { //Don't do anything if point analyzed
             minimum = Array[tempX][tempY]; //Minimum becomes min place value
-            
             x = tempX; //x becomes equal to temporary value
             y = tempY; //y becomes equal to temporary value
           } //End of checking if point analyzed
@@ -93,11 +92,7 @@ void PrintMap() { //Prints all values of array of points
 } //End of function
 
 void MovingCicle(int x, int y) {
-
-  MoveToPoint(x,y);
-    //xPrev = x;
-    //yPrev = y;
-  
+  MoveToPoint(x, y);
   value = Array[x][y]; //Current point value
   ArrayMap[x][y] = 3; //Select point as full analized and already moved around it
   Check(x, y); //Check all points around current

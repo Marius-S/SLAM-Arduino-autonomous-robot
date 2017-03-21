@@ -1,3 +1,4 @@
+//TODO Need to create engine movments
 int Array[10][10] = {{}}; //Our area array
 int ArrayMap[10][10] = {{}}; //Our area array which we use for map draw
 int ArObs[10][10] = {{}}; //Our area array of obstacles
@@ -17,10 +18,10 @@ void setup() {
 }
 
 void loop() {
-  Obstacles(2);
+  Obstacles(7);
   if (start == 1) { //If loop is available to start
     Array[0][0] = 1; //Primary point value
-    while ((x != 3) && (y != 3)) { //While final point doesn't reach
+    while ((y != 9) || (x != 0)) {
       xPrev = x;
       yPrev = y;
       FindMin(); //Find minimum value
