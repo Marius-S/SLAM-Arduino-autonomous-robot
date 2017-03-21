@@ -12,6 +12,15 @@ int value = 0; //Current point value which we will use to add to near points
 int xPrev = 0;
 int yPrev = 0;
 
+//Variables for engine movements
+int x1 = 0;
+int y1 = 0;
+int x2 = 0;
+int y2 = 0;
+int x3 = 0;
+int y3 = 0;
+int Score = 0;
+
 void setup() {
   Serial.begin(9600); //Begin serial port 9600
   Serial.println("Starting Dijkstra algorithm"); //Message to Serial that Arduino started
@@ -21,7 +30,8 @@ void loop() {
   Obstacles(7);
   if (start == 1) { //If loop is available to start
     Array[0][0] = 1; //Primary point value
-    while ((y != 9) || (x != 0)) {
+    //while ((y != 9) || (x != 0)) {
+    while ((y != 3) || (x != 5)) {
       xPrev = x;
       yPrev = y;
       FindMin(); //Find minimum value

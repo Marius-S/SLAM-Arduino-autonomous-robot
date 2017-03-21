@@ -19,18 +19,18 @@ void FindMin() { //Finding minimum value in Array
     tempX++; //Increasing X value in cicle
     tempY = 0; //Retrun tempY value to zero
   } //End of checking if X reached max
-  Serial.print("Minimum function value: ");
-  Serial.println(minimum);
+    Serial.print("Minimum function value: ");
+    Serial.println(minimum);
 } //End of funkction
 
 void Check(int x, int y) { //Check if variable confirms all requirements
   if ((ArrayMap[x][y] != 2) || (ArrayMap[x][y] != 3)) { //If point no obstatacle and
     //still do not analyzed
-    Serial.print("Checking X:");
-    Serial.print(x);
-    Serial.print(" Y:");
-    Serial.print(y);
-    Serial.print(" - ");
+        Serial.print("Checking X:");
+        Serial.print(x);
+        Serial.print(" Y:");
+        Serial.print(y);
+        Serial.print(" - ");
     if ((x <= MaxX) && (x >= 0)) { //Check if x is not over max
       if ((y <= MaxY) && (y >= 0)) { //Check if y is not over max
         if (ArObs[x][y] == 2) { //Check if point exist in obstacles map
