@@ -12,6 +12,10 @@ int value = 0; //Current point value which we will use to add to near points
 int xPrev = 0;
 int yPrev = 0;
 
+//Target values
+int TargetX = 0;
+int TargetY = 9;
+
 //Variables for engine movements
 int x1 = 0;
 int y1 = 0;
@@ -27,20 +31,24 @@ void setup() {
 }
 
 void loop() {
-  Obstacles(7);
+  Obstacles(6);
   if (start == 1) { //If loop is available to start
     Array[0][0] = 1; //Primary point value
     //while ((y != 9) || (x != 0)) {
-    while ((y != 3) || (x != 5)) {
+    while ((y != TargetY) || (x != TargetX)) {
       xPrev = x;
       yPrev = y;
-      FindMin(); //Find minimum value
+      //FindMin(); //Find minimum value -- Dijsktra
+      FindMinA(); //Find minimum value -- AStar
+      
       MovingCicle(x, y); //Check around selected point
     } //End of loop while final point doesn't reach
-    //Serial.println("---Printing values---");
-    //PrintAllValues(); //Print squares values
-    //Serial.println("---Printing map---");
-    //PrintMap(); //Print Map with map values
+    Serial.println("---Printing values---");
+    PrintAllValues(); //Print squares values
+    Serial.println("---Printing map---");
+    PrintMap(); //Print Map with map values
     start = 0; //At the end stop loop cicle
+    Serial.print("Total value: ");
+    Serial.print(Score);
   } //End of loop check
 } //End of main loop

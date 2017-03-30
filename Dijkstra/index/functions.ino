@@ -96,10 +96,22 @@ void MovingCicle(int x, int y) {
   value = Array[x][y]; //Current point value
   ArrayMap[x][y] = 3; //Select point as full analized and already moved around it
   Check(x, y); //Check all points around current
+  //Serial.println("Engine - turn left");
+  Score = Score + 1;
   Check(x + 1, y);
+  //Serial.println("Engine - turn left");
+  Score = Score + 1;
   Check(x - 1, y);
+  //Serial.println("Engine - turn left");
+  Score = Score + 1;
   Check(x, y + 1);
+  //Serial.println("Engine - turn left");
+  Score = Score + 1;
   Check(x, y - 1);
+  //Serial.println("Engine - turn left");
+  Score = Score + 1;
   Check(x - 1, y - 1);
+  //Serial.println("Engine - turn left");
+  Score = Score + 1;
   Check(x + 1, y + 1);
 }
