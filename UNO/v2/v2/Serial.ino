@@ -20,7 +20,7 @@ void print_array() { //Print array as grid
     //Array print
     while (y < 10) {
       while (x < 10) {
-        Serial.print(Array[x][y]);
+        Serial.print(Array_rez[x][y]);
         x++;
       }
       y++;
@@ -39,7 +39,7 @@ void print_array_full() { //Print array as line for map draw application
       //Array print
       while (y < 10) {
         while (x < 10) {
-          Serial.println(Array[x][y]);
+          Serial.println(Array_rez[x][y]);
           x++;
         }
         y++;
