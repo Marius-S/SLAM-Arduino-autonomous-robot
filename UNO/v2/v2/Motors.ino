@@ -1,56 +1,45 @@
-void turn_left(int m_speed) { //Turn robot left
-  if (motors == 1) {
-    digitalWrite(13, HIGH);
-    digitalWrite(12, HIGH);
-    digitalWrite(8, LOW);
-    digitalWrite(9, LOW);
-    analogWrite(11, m_speed);
-    analogWrite(3, m_speed);
-    delay(500);
-    analogWrite(11, 0);
-    analogWrite(3, 0);
-    digitalWrite(8, HIGH);
-    digitalWrite(9, HIGH);
-  }
+void turn_left(int turn_time) { //Turn robot left
+  engine_start();
+  delay(50);
+  left.write(0);
+  right.write(0);
+  delay(turn_time);
+  servo_stop();
+  engine_stop();
 }
 
-void turn_right(int m_speed) {//Turn robot right
-  if (motors == 1) {
-    digitalWrite(13, LOW);
-    digitalWrite(12, LOW);
-    digitalWrite(8, LOW);
-    digitalWrite(9, LOW);
-    analogWrite(11, m_speed);
-    analogWrite(3, m_speed);
-    delay(700);
-    analogWrite(11, 0);
-    analogWrite(3, 0);
-    digitalWrite(8, HIGH);
-    digitalWrite(9, HIGH);
-  }
+void turn_right(int turn_time) {//Turn robot right
+  engine_start();
+  delay(50);
+  left.write(180);
+  right.write(180);
+  delay(turn_time);
+  servo_stop();
+  engine_stop();
 }
 
-void go_straight(int m_speed) {//Go straight
-  if (motors == 1) {
-    digitalWrite(13, LOW);
-    digitalWrite(8, LOW);
-    digitalWrite(12, HIGH);
-    digitalWrite(9, LOW);
-    analogWrite(11, m_speed + 10);
-    analogWrite(3, m_speed);
-    delay(500);
-    analogWrite(11, 0);
-    analogWrite(3, 0);
-    digitalWrite(8, HIGH);
-    digitalWrite(9, HIGH);
-  }
+void go_straight(int turn_time) {//Go straight
+  engine_start();
+  delay(50);
+  left.write(180);
+  right.write(0);
+  delay(turn_time);
+  servo_stop();
+  engine_stop();
 }
 
-void stop_motors() {//Full stop
-  if (motors == 1) {
-    digitalWrite(8, HIGH);
-    digitalWrite(9, HIGH);
-    analogWrite(11, 0);
-    analogWrite(3, 0);
-  }
+void engine_stop() {
+  analogWrite(11, 0);
+  analogWrite(3, 0);
 }
+
+void engine_start() {
+  analogWrite(11, 255);
+  analogWrite(3, 255);
+}
+
+void servo_stop() {
+  left.write(90);  // stop left servo
+  right.write(90);  // stop right servo
+}
+

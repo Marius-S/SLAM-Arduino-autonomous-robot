@@ -1,3 +1,37 @@
+void Test(int test) {
+  if (test == 1) {
+    Test1();
+  }
+  switch (test) {
+    case 1:
+      Test1();
+      break;
+    case 2:
+      Test2();
+      break;
+    case 3:
+      Test3();
+      break;
+    case 4:
+      Test4();
+      break;
+    case 5:
+      Test5();
+      break;
+    case 6:
+      Test6();
+      break;
+    case 7:
+      Test7();
+      break;
+    case 8:
+      Test8();
+      break;
+    default:
+      break;
+  }
+}
+
 void Test1() {
   //Empty array, robot can move there he want
 }
