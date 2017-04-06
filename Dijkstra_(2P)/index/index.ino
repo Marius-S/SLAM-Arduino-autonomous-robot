@@ -16,6 +16,8 @@ int yPrev = 0;
 int TargetX = 0;
 int TargetY = 9;
 
+int min_c = 0;
+
 //Variables for engine movements
 int x1 = 0;
 int y1 = 0;
@@ -31,17 +33,33 @@ void setup() {
 }
 
 void loop() {
-  Obstacles(6);
+  Obstacles(7);
   if (start == 1) { //If loop is available to start
     Array[0][0] = 1; //Primary point value
     //while ((y != 9) || (x != 0)) {
     while ((y != TargetY) || (x != TargetX)) {
       xPrev = x;
       yPrev = y;
-      //FindMin(); //Find minimum value -- Dijsktra
-      FindMinA(); //Find minimum value -- AStar
-      
+      FindMin(); //Find minimum value -- Dijsktra
       MovingCicle(x, y); //Check around selected point
+    } //End of loop while final point doesn't reach
+    int TargetX = MaxX;
+    while ((y != TargetY) || (x != TargetX)) {
+      if (minimum == 999) {
+        min_c = min_c + 1;
+      } else {
+        min_c = 0;
+      }
+      if (min_c >= 5) {
+        start = 0;
+        x = TargetX;
+        y = TargetY;
+      } else {
+        xPrev = x;
+        yPrev = y;
+        FindMin(); //Find minimum value -- Dijsktra
+        MovingCicle(x, y); //Check around selected point
+      }
     } //End of loop while final point doesn't reach
     Serial.println("---Printing values---");
     PrintAllValues(); //Print squares values
