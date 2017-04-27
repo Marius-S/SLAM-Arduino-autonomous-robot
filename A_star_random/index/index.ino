@@ -26,7 +26,7 @@ int y3 = 0;
 int Score = 0;
 
 //A start random
-int obstaclesz = 0;
+int obstaclesz = 7;
 int AllMap = 1;
 long MainScore = 0;
 int counter = 1;
@@ -47,18 +47,18 @@ void loop() {
        
         TargetX = random(0, 9);
         TargetY = random(0, 9);
-        while (Array[TargetX][TargetY] != 0) {
-          if (min_c2 <= 100) {
-            TargetX = random(0, 9);
-            TargetY = random(0, 9);
-            min_c2++;
-          } else {
-            Array[TargetX][TargetY] = 5;
-            y = TargetY;
-            x = TargetX;
-            AllDone();
-          }
-        }
+//        while (Array[TargetX][TargetY] != 0) {
+//          if (min_c2 <= 100) {
+//            TargetX = random(0, 9);
+//            TargetY = random(0, 9);
+//            min_c2++;
+//          } else {
+//            Array[TargetX][TargetY] = 5;
+//            y = TargetY;
+//            x = TargetX;
+//            AllDone();
+//          }
+//        }
         while ((y != TargetY) || (x != TargetX)) {
           if (minimum == 999) {
             min_c = min_c + 1;
